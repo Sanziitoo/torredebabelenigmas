@@ -136,7 +136,7 @@ function renderImpetoMechanic(container) {
             A chave secreta oculta na torre guia o deslocamento circular de cada letra.<br>
             Gire os anéis para alinhar as engrenagens e revelar a palavra original.
         `;
-    }
+    } // <--- CHAVE DE FECHAMENTO ADICIONADA AQUI
 
     const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const outerGroup = document.getElementById('outerLetters');
