@@ -1,0 +1,112 @@
+/* ==========================================
+   ENIGMA V: O VAZIO SAGRADO (MECÂNICA SILÊNCIO)
+   ========================================== */
+
+.silence-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 10px;
+    text-align: center;
+}
+
+.silence-instruction {
+    font-size: 0.95rem;
+    color: var(--text-dust, #a8a29e);
+    margin-bottom: 25px;
+    font-style: italic;
+    max-width: 420px;
+}
+
+.silence-orb-container {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.silence-orb-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px dashed rgba(212, 175, 55, 0.3);
+    border-radius: 50%;
+    animation: orbSpin 20s linear infinite;
+}
+
+.silence-orb-core {
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.8) 0%, rgba(0, 0, 0, 0.8) 80%);
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+    transition: all 0.5s ease;
+}
+
+.silence-progress-bar-wrap {
+    width: 100%;
+    max-width: 300px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+.silence-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #8a7335, #d4af37);
+    transition: width 0.2s linear;
+}
+
+.silence-status {
+    margin-top: 10px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    color: #a8a29e;
+}
+
+.silence-status.warning {
+    color: #ef4444;
+    animation: shake 0.3s ease-in-out;
+}
+
+/* ==========================================
+   ESTILOS ADICIONADOS: TABULEIRO E ONDAS SONORAS
+   ========================================== */
+
+.echo-tile {
+    position: relative;
+    overflow: visible;
+}
+
+@keyframes soundWave {
+    0% { 
+        transform: scale(1); 
+        opacity: 0.8; 
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); 
+    }
+    100% { 
+        transform: scale(1.8); 
+        opacity: 0; 
+        box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); 
+    }
+}
+
+@keyframes orbSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+}

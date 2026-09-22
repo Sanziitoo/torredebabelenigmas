@@ -1,0 +1,62 @@
+/* ==========================================
+   ENIGMA VI: A MATRIZ DA VIGÍLIA
+   ========================================== */
+
+.alchemical-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 10px;
+    text-align: center;
+}
+
+.alchemical-box .subtitle {
+    font-size: 0.95rem;
+    color: var(--text-dust, #a8a29e);
+    margin-bottom: 25px;
+    font-style: italic;
+    max-width: 420px;
+}
+
+#alchemy-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 90px);
+    grid-gap: 12px;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+#alchemy-grid button {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-stone, rgba(255, 255, 255, 0.1));
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+#alchemy-grid button:hover {
+    border-color: var(--accent-gold, #d4af37);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+    transform: translateY(-2px);
+}
+
+#alchemy-status {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    color: var(--accent-gold, #d4af37);
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+#alchemy-input-section {
+    margin-top: 15px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

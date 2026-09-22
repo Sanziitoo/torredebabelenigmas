@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Torre de Babel — Os 7 Enigmas</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/enigma5.css">
+    <link rel="stylesheet" href="css/enigma6.css">
+    <link rel="stylesheet" href="css/enigma7.css">
+</head>
+<body>
+
+    <!-- Fundo de Partículas -->
+    <canvas id="ambientCanvas"></canvas>
+
+    <!-- Barra Superior -->
+    <nav class="nav-bar">
+        <div class="nav-left">
+            <span class="ping-dot"></span>
+            <span class="nav-title">Ordem das Sete Almas</span>
+        </div>
+        <div class="nav-right">
+            <button id="audioBtn" class="btn-icon" title="Alternar Som Ritualístico">
+                <svg id="audioIcon" viewBox="0 0 24 24">
+                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
+                </svg>
+                <span id="audioText">Som: Desativado</span>
+            </button>
+            <button id="resetBtn" class="btn-icon" title="Reiniciar todo o progresso">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/>
+                </svg>
+                <span>Reiniciar</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-container">
+        <header class="header">
+            <div class="tower-wrapper">
+                <svg class="ring-svg" viewBox="0 0 200 200" fill="none">
+                    <circle cx="100" cy="100" r="95" stroke="currentColor" stroke-width="1" stroke-dasharray="4 6"/>
+                    <circle cx="100" cy="100" r="82" stroke="currentColor" stroke-width="0.5"/>
+                    <circle cx="100" cy="100" r="70" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 4"/>
+                </svg>
+
+                <svg id="babelTowerSvg" class="tower-svg" viewBox="0 0 100 100" fill="none">
+                    <path id="tier-1" d="M 20 85 L 80 85 L 75 75 L 25 75 Z" class="tower-tier"/>
+                    <path id="tier-2" d="M 26 73 L 74 73 L 70 63 L 30 63 Z" class="tower-tier"/>
+                    <path id="tier-3" d="M 31 61 L 69 61 L 65 51 L 35 51 Z" class="tower-tier"/>
+                    <path id="tier-4" d="M 36 49 L 64 49 L 60 39 L 40 39 Z" class="tower-tier"/>
+                    <path id="tier-5" d="M 41 37 L 59 37 L 56 28 L 44 28 Z" class="tower-tier"/>
+                    <path id="tier-6" d="M 45 26 L 55 26 L 53 18 L 47 18 Z" class="tower-tier"/>
+                    <polygon id="tier-7" points="50,8 46,16 54,16" class="tower-tier"/>
+                    <path d="M 20 85 Q 50 82 74 73 Q 26 67 65 51 Q 38 42 56 28 Q 48 20 50 8" stroke="#e2ded4" stroke-width="0.75" stroke-dasharray="1 2" opacity="0.6"/>
+                </svg>
+            </div>
+
+            <h1 class="main-title">A Torre de Babel</h1>
+            <p class="subtitle">Setenta vozes ergueram a pedra. O silêncio guardou o segredo. Decifre os vestígios da palavra fragmentada e descubra sua essência.</p>
+
+            <div class="progress-container">
+                <div class="progress-labels">
+                    <span id="progressText">Ascensão: 0 de 7 Selos Decifrados</span>
+                    <span id="progressPercent">0%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div id="progressBar" class="progress-bar-fill"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Grade de Enigmas -->
+        <section id="cardsGrid" class="cards-grid"></section>
+
+        <!-- Banner Final -->
+        <div id="unificationBanner" class="unification-banner hidden">
+            <span class="banner-tag">✦ O Círculo se Fecha ✦</span>
+            <h2>A Primeira Palavra Foi Restaurada</h2>
+            <p>"Não na pedra, mas na chama do espírito. Não no ruído, mas no reencontro das origens."</p>
+            <button onclick="openUnificationModal()" class="btn-gold">Contemplar a Revelação Final</button>
+        </div>
+    </main>
+
+    <!-- Modal do Enigma -->
+    <div id="riddleModal" class="modal-overlay hidden">
+        <div class="modal-box" id="modalContainer">
+            <button id="closeModalBtn" class="close-btn">✕</button>
+
+            <div class="modal-header">
+                <span id="modalNumber" class="modal-roman">Enigma I</span>
+                <span id="modalStatusBadge" class="status-badge">[ SELADO ]</span>
+            </div>
+
+            <div class="modal-glyph-wrap">
+                <div id="modalGlyph" class="glyph-box"></div>
+            </div>
+
+            <div class="modal-body">
+                <p id="modalQuote" class="modal-quote"></p>
+            </div>
+
+            <!-- ÁREA INTERATIVA DO MINIJOGO -->
+            <div id="interactiveArea" class="interactive-area"></div>
+
+            <div id="feedbackMsg" class="feedback-msg hidden"></div>
+
+            <div class="hint-section">
+                <button id="toggleHintBtn" class="hint-toggle">
+                    <span>💡 Consultar as Cinzas (Dica)</span>
+                    <span id="hintChevron">↓</span>
+                </button>
+                <div id="hintContent" class="hint-content hidden"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Final -->
+    <div id="unificationModal" class="modal-overlay hidden">
+        <div class="modal-box medium">
+            <button onclick="closeUnificationModal()" class="close-btn">✕</button>
+            <span class="banner-tag">✦ O Mito Recomposto ✦</span>
+            <h2>O Cântico da Torre Recorrente</h2>
+            
+            <div class="revelation-text">
+                <p>"No princípio, a <strong>Gênese</strong> que suporta o abismo... <strong>Jair</strong>"</p>
+                <p>"Na união dos espíritos, o <strong>Vínculo</strong> que não se rompe... <strong>Kauê</strong>"</p>
+                <p>"Diante das tempestades, a <strong>Convicção</strong> inabalável... <strong>Ayato</strong>"</p>
+                <p>"No tempo que flui, o <strong>Ciclo</strong> eterno de ruína e recomeço... <strong>Alex</strong>"</p>
+                <p>"Na ausência de ruído, o <strong>Silêncio</strong> que revela a verdade... <strong>Ashe</strong>"</p>
+                <p>"Nas sombras da noite, a <strong>Vigília</strong> dos olhos atentos... <strong>Filipe</strong>"</p>
+                <p>"E na hora decisiva, o <strong>Ímpeto</strong> que lança a alma ao infinito. <strong>Hiro</strong>"</p>
+            </div>
+
+            <button onclick="closeUnificationModal()" class="btn-gold">Retornar ao Templo</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/script.js"></script>
+    <script src="js/enigma5.js"></script>
+    <script src="js/enigma6.js"></script>
+    <script src="js/enigma7.js"></script>
+</body>
+</html>
